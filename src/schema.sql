@@ -99,11 +99,11 @@ INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,adm
 INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('P5','Doraemon','P1','P3','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Doraemon is a robot who helps people especially his friends','Admin333',"MeiMei");
 INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('P6','Doraemon','P1','P4','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Doraemon is a robot who helps people especially his friends','Admin333',"MeiMei");
 
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('pp1', 'hand1', 'pp1', '', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p1.jpeg', 'Admin333', 'leonzhang1996@126.com');
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('pp2', 'hand2', 'pp1', 'pp1', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p2.jpeg', 'Admin333', 'leonzhang1996@126.com');
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('pp3', 'hand3', 'pp1', 'pp2', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p3.jpeg', 'Admin333', 'leonzhang1996@126.com');
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('pp4', 'hand4', 'pp1', 'pp3', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p4.jpeg', 'Admin333', 'leonzhang1996@126.com');
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('pp5', 'hand5', 'pp1', 'pp4', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb2p1.jpeg', 'Admin333', 'leonzhang1996@126.com');
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('pp1', 'hand1', 'pp1', '', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p1.jpeg', 'Holding hands, so that we can make our world better','Admin333', 'leonzhang1996@126.com');
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('pp2', 'hand2', 'pp1', 'pp1', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p2.jpeg','Holding hands,A symbol of friendship and love. We can make our world better','Admin333', 'leonzhang1996@126.com');
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('pp3', 'hand3', 'pp1', 'pp2', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p3.jpeg', 'Hand in hands,A symbol of friendship and love. We can make our world better','Admin333', 'leonzhang1996@126.com');
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('pp4', 'hand4', 'pp1', 'pp3', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p4.jpeg', 'Hand in hands,A symbol of friendship and love. We can make our world better','Admin333', 'leonzhang1996@126.com');
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('pp5', 'hand5', 'pp1', 'pp4', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb2p1.jpeg', 'Hold my hand and we will make our world a better place','Admin333', 'leonzhang1996@126.com');
 
 INSERT INTO Contribution(pID,uID,amount) VALUES("P1", "Nike",1);
 INSERT INTO Contribution(pID,uID,amount) VALUES("P2", "MeiMei",1);
