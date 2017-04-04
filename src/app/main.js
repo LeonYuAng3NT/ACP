@@ -14,13 +14,11 @@ import CreateProductPage from './components/CreateProductPage/CreateProduct'
 import ResetPassword from './components/ResetPassword/ResetPassword'
 import Examples from './Examples'
 import CreateCommentPage from './components/CreateCommentPage/CreateComment'
-import Comment from './components/comment/Comment'
 import CommentsPage from './components/commentspage/CommentsPage'
 import HistreePage from './components/histreepage/HistreePage'
 import SearchPage from './components/search/SearchPage'
-import SearchResult from './components/searchresult/SearchResult'
-import SearchResultPage from './components/searchresultpage/SearchResultPage'
 import LoadingPage from './components/transitionPages/LoadingPage'
+import Profile from './components/profile/Profile'
 
 ReactDOM.render(
 	<Router history={browserHistory}>
@@ -28,11 +26,10 @@ ReactDOM.render(
 		<Route path='/' component={App} scrollStrategy='imitateBrowser'>
 			<IndexRoute component={Index} />
 			<Route path='loading' component={LoadingPage} />
-			<Route path='comment' component={Comment} />
 			<Route path='create_comment(/:pID/:name)' component={CreateCommentPage} />
 			<Route path='product(/:name)' component={Product} />
 			<Route path='product?pID=:pID' component={Product} />
-			<Route path='project(/:id)' component={Project} />
+			<Route path='project(/:pID)' component={Project} />
 			<Route path='requests' component={Requests} />
             <Route path='login' component={LoginPage} />
 			<Route path='update' component={UpdateInfo} />
@@ -40,10 +37,10 @@ ReactDOM.render(
             <Route path='register' component= {RegisterPage} />
 			<Route path='resetpassword' component= {ResetPassword} />
 			<Route path='commentspage(/:pID/:name)' component= {CommentsPage} />
-			<Route path='histreepage' component= {HistreePage} />
+			<Route path='histreepage(/:id)' component= {HistreePage} />
 			<Route path='searchpage' component= {SearchPage} />
-			<Route path='searchresultpage' component = {SearchResultPage} />
-				<Route path='searchresult' component = {SearchResult} />
+
+			<Route path='profile(?username=:username)' component = {Profile} />
 
 			<Route path='*' component={Examples} />
 		</Route>

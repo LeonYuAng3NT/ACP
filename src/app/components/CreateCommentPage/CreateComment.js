@@ -57,17 +57,17 @@ export default class CreateComment extends React.Component {
         var id = this.state.id;
         var create_comment = function(data){
             console.log(id);
-
+            console.log(data);
           if(data.correct == true){
             browserHistory.push('/commentsPage/'+id+'/'+name);
           }
         }
-        var data = sessionStorage.getItem('username');
-        if (data.length < 1) {
-            console.log("now logging in yet");
-        } else {
-            console.log("user logged in");
+
+        // check if the user have login, if not, redirect him to the login page
+        if (window.sessionStorage.getItem('username') == null) {
+            browserHistory.push('/login');
         }
+
         console.log(window.sessionStorage.getItem('uID'));
         var fire = () => utils.sendJSON('/api/add_comment/'+id+'/'+name,{
             uID : window.sessionStorage.getItem('uID'),
@@ -96,14 +96,11 @@ export default class CreateComment extends React.Component {
                 <Col xsOffset={2} componentClass={ControlLabel} sm={6} >
                     <ControlLabel>Type of this comment</ControlLabel>
                         <FormControl componentClass="select" placeholder="Type of this comment" inputRef={(ref) => {this.select = ref}}>
-                        <option value="select">positive</option>
-                        <option value="other">negative</option>
+                        <option value="positive">positive</option>
+                        <option value="negative">negative</option>
                     </FormControl>
                 </Col>
             </FormGroup>
-
-
-
 
                 <FormGroup>
                     <Col smOffset={7} sm={10}>

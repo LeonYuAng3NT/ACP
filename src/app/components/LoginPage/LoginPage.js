@@ -27,43 +27,7 @@ export default class LoginPage extends React.Component {
     }
 
     componentWillMount() {
-        console.log("[LoginPage]: MOUNTING");
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '1734208480228199',
-                xfbml      : true,
-                version    : 'v2.8'
-            });
-            FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    console.log('connected');
-                } else if (response.status === 'not_authorized') {
-                    console.log('we are not logged in');
-                } else {
-                    console.log('you are not logged in Facebook');
-                }
-            });
-        };
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    }
-    facebook_login(){
-        FB.login(function(response) {
-            console.log(response);
-            if (response.status === 'connected') {
-                console.log('Success')
-            } else if (response.status === 'not_authorized') {
-                console.log('not authorized')
-            } else {
-                console.log('You are not logged into Facebook.');
-            }
-        }, {scope: 'publish_actions'});
-
+        console.log("[LoginPage]: MOUNTING")
     }
 
     render(){
@@ -94,9 +58,7 @@ export default class LoginPage extends React.Component {
             username: this.refs.username.value,
             password: this.refs.password.value
         },verify);
-        let login = () => this.facebook_login();
         let FB_fire = function(response){
-            login();
             username = response.email;
             utils.sendJSON('/api/login',{
                 username: response.email,
@@ -149,11 +111,14 @@ export default class LoginPage extends React.Component {
                     <Col smOffset={2} sm={10}>
                         <FacebookLogin
                             appId="1734208480228199"
+                            size="medium"
                             autoLoad={false}
                             fields="name,email,picture"
                             callback={FB_fire}
+                            textButton="Login with Facebook"
                             cssClass="my-facebook-button-class"
                             icon={<TiSocialFacebookCircular size={30}/>}
+                            background-color="#3385FF"
                         />
                     </Col>
 

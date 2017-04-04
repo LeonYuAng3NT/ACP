@@ -50,14 +50,6 @@ import Bad from  'react-icons/lib/fa/thumbs-o-down';
          console.log("[Product]: DID MOUNT")
          window.scrollTo(0, 0)
      }
-/*
- pID: row.id,
- username: row.username,
- commentIssued: row.commentIssued,
- content: row.content,
- type: row.type
- */
-
 
 
      Callback(results) {
@@ -81,7 +73,7 @@ import Bad from  'react-icons/lib/fa/thumbs-o-down';
                                  {(item.type =='positive')?<Good size={30}/>:<Bad size={30}/>}
                              </p>
                              <p>
-                                 Commented at {item.commentIssued}
+                                 Commented at {new Date(item.commentIssued).toISOString().replace(/T/, ' ').replace(/\..+/, '')}
                              </p>
 
 
@@ -101,9 +93,8 @@ import Bad from  'react-icons/lib/fa/thumbs-o-down';
      render() {
 
     let name = this.state.name;
-     let title = 'Gumi Megpoid'
-     let author = 'Cyferouss'
-     let description = lorem;
+     let title = this.state.name
+
          let header = 'Displaying All Comments for ' +name;
 
      return (

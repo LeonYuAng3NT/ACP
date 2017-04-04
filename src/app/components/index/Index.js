@@ -58,9 +58,9 @@ export default class Index extends React.Component {
 
 						<Row>
 							<Col md={4}>
-								<h2>Heading</h2>
-								<p>Adipisicing ratione incidunt eaque expedita rerum porro inventore. Nihil sit ipsam iure officiis sit eos at quibusdam natus dignissimos natus dolore! Vel doloremque ipsa alias nihil harum laborum necessitatibus rerum?</p>
-								<p><Button>View details »</Button></p>
+								<h2>About ACP</h2>
+								<p>Art Collaboration Platform is a collaboration platform for artists to track changes in a product and coordinate work on these projects among mutiple artists.</p>
+								<p><Button onClick={() => browserHistory.push('/login')}>Learn More »</Button></p>
 							</Col>
 							<Col md={8}>
 								<Carousel>
@@ -92,38 +92,22 @@ export default class Index extends React.Component {
 				</Jumbotron>
 				<Grid>
 					<Row>
-						<Col md={8}>
-							<h1>Prompted</h1>
+						<Col md={4}>
+							<h3>Track Changes in a Project</h3>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								Every time a user uploads a product for an existing project, the new uploaded product will be shown in a tree view.
 							</p>
 						</Col>
 						<Col md={4}>
-							<h1>Featured</h1>
+							<h3>Tree View</h3>
 							<p>
-								Artists are respected and their work will be nominated to be displayed on the homepage.
-							</p>
-  							<Thumbnail onClick={() => browserHistory.push('/product')} alt="171x180" src={megpoidgumi} />
-							<Thumbnail onClick={() => browserHistory.push('/product/dummyb1p4')} alt="171x180" src={dummyb1p4} />
-						</Col>
-					</Row>
-					<Row>
-						<Col md={4}>
-							<h3>Catagory 1</h3>
-							<p>
-								Nulla nunc,
+								A tree view is a graph that contains all the products uploaded for this project. The first uploaded product is the root of the tree in this graph and the branches are the products developed from the first product.
 							</p>
 						</Col>
 						<Col md={4}>
-							<h3>Catagory 2</h3>
+							<h3>Relationships Between Products in a Tree View</h3>
 							<p>
-								Amet orci vel
-							</p>
-						</Col>
-						<Col md={4}>
-							<h3>Catagory n</h3>
-							<p>
-								Ac dolor suspendisse id lacus eu ullamcorper,
+								In a tree view, if there is a product B developed from product A, product B will be placed in the next level of product A in the graph.
 							</p>
 						</Col>
 					</Row>
