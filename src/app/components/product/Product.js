@@ -16,7 +16,9 @@ import PageHeader from 'react-bootstrap/lib/PageHeader';
 import Panel from 'react-bootstrap/lib/Panel';
 import {browserHistory} from 'react-router'
 import utils from '../Utils';
-
+import {
+    FormGroup
+} from 'react-bootstrap';
 import megpoidgumi from '../megpoidgumi.png';
 
 
@@ -82,6 +84,7 @@ export default class Product extends React.Component {
 
 	render() {
 		var id = this.state.pID;
+		var message = this.state.message;
 		var click = false;
 		var unhide = true;
         // check if the user have login, if not, redirect him to the login page
@@ -90,8 +93,11 @@ export default class Product extends React.Component {
         }
 		var id = this.state.pID;
 		var callback = (data) =>{
-			console.log(data)
-			this.state.message = data.message
+			console.log(data);
+			this.setState({
+				message:data.message
+			})
+
 			if(data.error == false){
 				window.open(this.state.imageSource);
 			}
@@ -143,11 +149,13 @@ export default class Product extends React.Component {
 				</Col>
 				<Col smOffset={2} sm={10}>
  				<Button type="submit" onClick= {fire} bsStyle="success" className={(unhide)?'':'hidden'}>Download this project</Button>
-				<p className={(click)?'':'hidden'}>
-					{this.state.message}
-				</p>
 				<Button onClick= {redirect} bsStyle="info" className={(unhide)?'':'hidden'}>Return Uploading</Button>
  				</Col>
+				<FormGroup>
+					<Col smOffset={2} sm={10}>
+						{message}
+						</Col>
+				</FormGroup>
 			</Grid>
 		)
 

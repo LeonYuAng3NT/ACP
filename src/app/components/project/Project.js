@@ -38,8 +38,10 @@ export default class Project extends React.Component {
             ok: false,
             panel_list_view: [],
             panel_tree_view: [],
-            description: lorem
-        }
+            description: '',
+            collaborators: '',
+            contributions:0
+        };
         console.log(props.params.pID);
 
         if (props.params.pID == null) {  /* Set default to megpoid gumi*/
@@ -100,12 +102,17 @@ export default class Project extends React.Component {
         /* Put everything into the list... */
         let all_product = resultJson.nodes
         console.log(all_product)
+        this.setState({
+            description: resultJson.root.description,
+            collaborators: resultJson.artists,
+            contributions:resultJson.contribution
+        });
         let url_prefix = '/product?pID=';
         for (var i = all_product.length - 1; i >= 0; i--) {
             if (i >= 3) {
                 panel_list_view_body.push(
                     <Row className="show-grid" key={i}>
-                        <Col md={2}><Thumbnail src={all_product[i].imageURL} onClick={ () => browserHistory.push(url_prefix + all_product[i].pID)}/></Col>
+                        <Col md={2}><Thumbnail src={all_product[i].imageURL} onClick={ () => browserHistory.push(url_prefix + all_product.pID)}/></Col>
                         <Col md={2}><Thumbnail src={all_product[i-1].imageURL} onClick={ () => browserHistory.push(url_prefix + all_product[i-1].pID)}/></Col>
                         <Col md={2}><Thumbnail src={all_product[i-2].imageURL} onClick={ () => browserHistory.push(url_prefix + all_product[i-2].pID)}/></Col>
                         <Col md={2}><Thumbnail src={all_product[i-3].imageURL} onClick={ () => browserHistory.push(url_prefix + all_product[i-3].pID)}/></Col>
@@ -210,7 +217,7 @@ export default class Project extends React.Component {
             ok: true,
             panel_list_view: panel_list_view,
             panel_tree_view: panel_tree_view,
-            description: "note: function not implemented"
+
         })
     }
 
@@ -239,19 +246,19 @@ export default class Project extends React.Component {
                 <Grid>
                     <PageHeader>Project Name</PageHeader>
                     <Col md={3}>
-                        <Panel header="Description (from the first artwork)">
+                        <Panel header="Description (from the original artwork)">
                             <p>
                                 {this.state.description}
                             </p>
                         </Panel>
                         <Panel header="Collaborators">
                             <i>
-                                note: this function is not implemented
+                                {this.state.collaborators}
                             </i>
                         </Panel>
                         <Panel header="Statstics">
                             <i>
-                                note: this function is not implemented
+                                Total commits : {this.state.contributions}
                             </i>
                         </Panel>
                     </Col>
@@ -297,55 +304,3 @@ export default class Project extends React.Component {
     }
 }
 
-
-
-
-
-/* The successor function */
-// successor(name){
-// var successor = [];
-// for (i = 0; i < this.state.list.length; i++) {
-// if(this.state.list[i].parent === name){
-// var removed = this.state.list.splice(i,1);
-// successor.push(removed);
-// this.state.images[this.state.j].push(removed.imageURL);
-// }
-// }
-// return successor;
-// }
-
-
-/* The bfs function */
-// bfs(root){
-// var fifo = [root];
-// while(fifo.length < 1){
-// var current = fifo.splice(0,1);
-// var successor = this.successor(current.parent);
-// fifo.push(successor);
-// this.state.j = this.state.j+1;
-// }
-// }
-
-
-/* Inside render */
-// let project = "P1"; // find a way to replace it
-// let fire = () => utils.sendJSON('/api/login',{name: project},callback);
-// let callback = (data) =>{
-// this.setState({massage: data.massage});
-// if(data.error == true){
-// return;
-// }
-// else if(data.isroot){
-// this.setState({images: [data.root.imageURL]});
-// }
-// else{
-// this.state.images.push([]);
-// this.state.images[0].push(data.root.imageURL);
-// for (i = 0; i < data.nodes.length; i++){
-//   this.state.images.push([]);
-// }
-// this.setState({list: data.nodes});
-// this.bfs(data.root);
-//
-// }
-// }

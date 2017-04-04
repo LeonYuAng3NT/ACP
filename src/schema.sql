@@ -92,12 +92,12 @@ INSERT INTO Comment (pID, uID, commentIssued, content, type) VALUES ('P12345','A
 INSERT INTO Comment (pID, uID, commentIssued, content, type) VALUES ('P12345','A00001','2010-12-31', 'Nice! Great work', 'positive');
 INSERT INTO Comment (pID, uID, commentIssued, content, type) VALUES ('P12345','B00002','2017-01-30', 'Bad work', 'negative');
 INSERT INTO Comment (pID, uID, commentIssued, content, type) VALUES ('P12345','B00002','2010-02-30', 'OK', 'negative');
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('P1','Doraemon','P1','P1','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Admin333',"Nike");
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('P2','Doraemon','P1','P1','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Admin333',"MeiMei");
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('P3','Doraemon','P1','P2','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Admin333',"MaMa");
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('P4','Doraemon','P1','P2','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Admin333',"BaBa");
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('P5','Doraemon','P1','P3','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Admin333',"MeiMei");
-INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('P6','Doraemon','P1','P4','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Admin333',"MeiMei");
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('P1','Doraemon','P1','P1','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'My first work of Doraemon','Admin333',"Nike");
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('P2','Doraemon','P1','P1','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'A modified version','Admin333',"MeiMei");
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('P3','Doraemon','P1','P2','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'My new Doraemon;','Admin333',"MaMa");
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('P4','Doraemon','P1','P2','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Doraemon is a robot who helps people especially his friends','Admin333',"BaBa");
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('P5','Doraemon','P1','P3','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Doraemon is a robot who helps people especially his friends','Admin333',"MeiMei");
+INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, description,admin,artist) VALUES ('P6','Doraemon','P1','P4','now','https://s3.amazonaws.com/ACPimages/doraemon.png', 'Doraemon is a robot who helps people especially his friends','Admin333',"MeiMei");
 
 INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('pp1', 'hand1', 'pp1', '', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p1.jpeg', 'Admin333', 'leonzhang1996@126.com');
 INSERT INTO Product (pID, name,root, parent,dateIssued,imageURL, admin,artist) VALUES ('pp2', 'hand2', 'pp1', 'pp1', 'now', 'https://s3.amazonaws.com/ACPimages/dummyb1p2.jpeg', 'Admin333', 'leonzhang1996@126.com');

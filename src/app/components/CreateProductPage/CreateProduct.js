@@ -61,9 +61,8 @@ export default class RegisterPage  extends React.Component {
         utils.sendJSON(
             '/api/product',
             user,
-            (json) => {
-                console.log("[CREATE PRODUCT]: CALLBACK FROM BACK");
-                console.log(json)
+            (data) => {
+                console.log(data);
             }
         )
     }
@@ -74,6 +73,7 @@ export default class RegisterPage  extends React.Component {
       var callback = (data) =>{
 
         var option = [];
+        option.push(<option value='root'>Create your own project</option>)
         data.nodes.map(function(row){
           option.push(<option value= {row.pID}>{row.name}---{row.artist}</option>)
         });
@@ -109,8 +109,10 @@ export default class RegisterPage  extends React.Component {
         });
 
         var redirect = () =>{
-          var path = '/product/'+this.refs.parent.value;
-          browserHistory.push(path);
+          if(this.refs.parent.value != 'root'){
+            var path = '/product?pID='+this.refs.parent.value;
+            browserHistory.push(path);
+          }
         }
 
         return (
