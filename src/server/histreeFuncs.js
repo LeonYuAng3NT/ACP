@@ -24,10 +24,12 @@ function hisTreeFunc(req,res,next){
     error: true,
     message: null,
     root: null,
-    nodes: null
+    nodes: null,
+      artists: '',
+      contribution:0
   }
 	if(pid!=null) {
-		db.all("SELECT pID, root, parent, imageURL FROM Product WHERE pID=?", [pid], function (err, rows) {
+		db.all("SELECT pID, root, parent, imageURL, description FROM Product WHERE pID=?", [pid], function (err, rows) {
 			if(err){
         console.log(err);
 				note.message = "Unexpected";
@@ -35,20 +37,26 @@ function hisTreeFunc(req,res,next){
 			}
 			else if(rows.length < 1){
 				console.log("Such project does not exist");
-        note.message = "Such project does not exist";
+                note.message = "Such project does not exist";
 				res.send(note);
 			}else{
         var x = rows[0].root;
-        db.all("SELECT pID, parent, imageURL FROM Product WHERE root=? OR pID=?", [x, x], function (err, rows) {
+        db.all("SELECT pID, parent, imageURL, description, artist FROM Product WHERE root=? AND imageURL is NOT NULL", [x], function (err, rows) {
           if(err){
             console.log(err);
     				note.massage = "Unexpected";
     				res.send(note);
     			}else{
+              var artist =[];
             for(var i = 0; i< rows.length; i++){
+                note.contribution++;
+                if(artist.indexOf(rows[i].artist)==-1){
+                    artist.push(rows[i].artist);
+                    note.artists+= rows[i].artist+'\t';
+
+                }
               if(rows[i].parent==rows[i].pID){
                 note.root = rows[i];
-                continue;
               }
             }
             note.nodes=rows;

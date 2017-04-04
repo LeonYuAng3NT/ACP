@@ -352,7 +352,10 @@ function setup(app) {
 	// can search comment by uID or pID
 
 	app.get('/product',getProductFuncs.getProductFunc);
-	app.get('/product/:name',getProductFuncs.getProductFunc);//done
+	app.get('/product/:name',getProductFuncs.getProductFunc);
+	app.get('/product?name=name',getProductFuncs.getProductFunc);
+	app.get('/product?artist=artist',getProductFuncs.getProductFunc);
+	app.get('/product?date=date',getProductFuncs.getProductFunc);//done
 	// This URL is able to replace the functionality of histree;
 
   app.get('/contribution_check/:uid', ContributionFuncs.contribution_check);
