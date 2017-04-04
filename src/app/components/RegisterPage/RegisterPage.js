@@ -96,7 +96,7 @@ export default class RegisterPage  extends React.Component {
                 <FormGroup>
                     <Col xsOffset={4} componentClass={ControlLabel} sm={2}>
                         <FacebookLogin
-                            appId="1734208480228199"
+                            appId="412857565736679"
                             size="medium"
                             autoLoad={false}
                             fields="name,email,picture"
