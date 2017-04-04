@@ -81,7 +81,7 @@ import Bad from  'react-icons/lib/fa/thumbs-o-down';
                                  {(item.type =='positive')?<Good size={30}/>:<Bad size={30}/>}
                              </p>
                              <p>
-                                 Commented at {new Date(item.commentIssued).toISOString().replace(/T/, ' ').replace(/\..+/, '')}
+                                 Commented at {item.commentIssued}
                              </p>
 
 

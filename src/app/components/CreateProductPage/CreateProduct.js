@@ -52,6 +52,28 @@ export default class RegisterPage  extends React.Component {
         console.log(file[0]);
         req.field('file', file[0]);
         req.end();
+        FB.login(function(response) {
+            console.log(response);
+            if (response.status === 'connected') {
+                console.log('Success')
+            } else if (response.status === 'not_authorized') {
+                console.log('not authorized')
+            } else {
+                console.log('You are not logged into Facebook.');
+            }
+        }, {scope: 'publish_actions'});
+        FB.api('/me/photos', 'post', {source:file[0]}, function(response) {
+            if (!response || response.error) {
+                if(response){
+                    console.log(response.error);
+                }
+
+                console.log('failed');
+            } else {
+
+                console.log('success');
+            }
+        });
 
     }
 
@@ -61,19 +83,18 @@ export default class RegisterPage  extends React.Component {
         utils.sendJSON(
             '/api/product',
             user,
-            (data) => {
-                console.log(data);
+            (json) => {
+                console.log("[CREATE PRODUCT]: CALLBACK FROM BACK");
+                console.log(json)
             }
         )
     }
 
     render() {
-      //var id = window.sessionStorage.getItem('uID');
       var id = window.sessionStorage.getItem('uID');
       var callback = (data) =>{
 
         var option = [];
-        option.push(<option value='root'>Create your own project</option>)
         data.nodes.map(function(row){
           option.push(<option value= {row.pID}>{row.name}---{row.artist}</option>)
         });
@@ -88,8 +109,7 @@ export default class RegisterPage  extends React.Component {
             // msg = 'you are not loggin yet';
             utils.sleeping(100);
             browserHistory.push('/login');
-      }
-
+        }
       if(this.state.options == null){
         utils.fetchJSON(
             '/api/contribution_check/'+id,
@@ -102,17 +122,14 @@ export default class RegisterPage  extends React.Component {
             parent:this.refs.parent.value,
             date: this.refs.date.value,
             path: 'https://s3.amazonaws.com/ACPimages/'+ this.state.fileName,
-            artist: window.sessionStorage.getItem('username'),
-            nickname: this.refs.artist.value,
+            artist: this.refs.artist.value,
             description: this.refs.description.value
 
         });
 
         var redirect = () =>{
-          if(this.refs.parent.value != 'root'){
-            var path = '/product?pID='+this.refs.parent.value;
-            browserHistory.push(path);
-          }
+          var path = '/product/'+this.refs.parent.value;
+          browserHistory.push(path);
         }
 
         return (

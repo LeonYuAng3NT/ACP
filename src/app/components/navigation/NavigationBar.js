@@ -17,9 +17,7 @@ export default class NavigationBar extends React.Component {
 	}
 
 	render() {
-		let username = window.sessionStorage.getItem('username');
-		let currElementUrl =  '/profile?username=' + username;
-		console.log(currElementUrl);
+
 		var logout = () => {
 			console.log("logging out!");
 			window.sessionStorage.clear();
@@ -78,7 +76,7 @@ export default class NavigationBar extends React.Component {
 							<NavItem eventKey={3} href="#">About</NavItem>
 						</Nav>
 						<Nav pullRight>
-							<NavItem eventKey={1} onClick={() => {browserHistory.push(currElementUrl)}}>{window.sessionStorage.getItem('username')}</NavItem>
+							<NavItem eventKey={1} onClick={() => {}}>{window.sessionStorage.getItem('username')}</NavItem>
 							<NavItem eventKey={1} onClick={() => {browserHistory.push('/create_product')}}>Upload</NavItem>
 							<NavItem eventKey={1} onClick={logout}>Logout</NavItem>
 						</Nav>

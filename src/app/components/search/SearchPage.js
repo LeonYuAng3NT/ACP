@@ -17,7 +17,8 @@ import {
   Row, 
   Button, 
   ControlLabel, 
-
+  HelpBlock, 
+  ButtonToolbar,
   Checkbox,
   Image, 
   Media,
@@ -30,8 +31,7 @@ export default class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [],
-      query:'name'
+      searchResults: []
     };
 
   }
@@ -51,24 +51,44 @@ export default class SearchPage extends React.Component {
    * Project - default color scheme (grey-ish)
    */
   Callback(results) {
-    console.log(results);
     let resultPool = [];
     let clock = 0;
-    if (results.length == 0) {
+    if (!results || results.length == 0) {
       console.log("[SearchPage] No result!");
       resultPool.push(
         <ControlLabel> No result... </ControlLabel>
-      );
-      this.setState({
-        searchResults: resultPool
-      })
-
+      )
     } else {
       console.log(results);
       results.map( (element) => {
         clock++;
         let currElementUrl =  '/product?pID=' + element.pID;
         console.log(currElementUrl);
+        //if (element.type == 'project') {
+          /*
+          resultPool.push(
+            <Well key={clock}>
+              <Media>
+                <Media.Left>
+                  <Button bsStyle="primary" onClick={() => browserHistory.push(currElementUrl)}>
+                    Check Out!
+                  </Button>
+                </Media.Left>
+                <Media.Body>
+                  <Media.Heading>
+                    {element.title}
+                  </Media.Heading>
+                  <p>
+                    {element.description}
+                  </p>
+                </Media.Body>
+                <Media.Right>
+                  <i>id.<u>{element.id}</u></i>
+                </Media.Right>
+              </Media>
+            </Well>
+          )
+          */
        if (clock % 2) {
         resultPool.push(
             <Well id={style.EvenResults} key={clock}>
@@ -78,10 +98,7 @@ export default class SearchPage extends React.Component {
                   </Media.Left>
                   <Media.Body>
                     <Media.Heading>{element.name}</Media.Heading>
-                    <p>Description: {element.description}</p>
-                    <br />
-                    <br />
-                    <i>Author:{element.artist}</i>
+                    <p>{element.description}</p>
                   </Media.Body>
                   <Media.Right>
                     <Button onClick={() => browserHistory.push(currElementUrl)}>View</Button>
@@ -93,7 +110,7 @@ export default class SearchPage extends React.Component {
               </Well>
         )
        }
-
+        //}
         else {
           resultPool.push(
             <Well id={style.OddResults} key={clock}>
@@ -103,10 +120,7 @@ export default class SearchPage extends React.Component {
                 </Media.Left>
                 <Media.Body>
                   <Media.Heading>{element.name}</Media.Heading>
-                  <p>Description:{element.description}</p>
-                  <br />
-                  <br />
-                  <i>Author:{element.artist}</i>
+                  <p>{element.description}</p>
                 </Media.Body>
                 <Media.Right>
                   <Button onClick={() => browserHistory.push(currElementUrl)}>View</Button>
@@ -128,22 +142,14 @@ export default class SearchPage extends React.Component {
 
   render() {
     let input = undefined;
-    var query = this.state.query;
 
     let searchCall = () => {
-      this.setState({
-        query:this.refs.status.value
-      });
-      console.log(this.state.query);
-      console.log("QUERY STRING: " + input.value);
+      console.log("QUERY STRING: " + input.value)
       this.setState({
         searchResults: []
       });
-      console.log(query);
-      var url = '/api/product?'+query+'='+input.value;
-      console.log(url);
       utils.fetchJSON(
-        url,
+        '/api/product/'+input.value,
         (json) => {
           this.Callback(json)
         }
@@ -153,7 +159,7 @@ export default class SearchPage extends React.Component {
     return(
       <Grid>
         <Row>
-          <PageHeader> Search for Products </PageHeader>
+          <PageHeader> Search for Projects and Products </PageHeader>
         </Row>
 
         <Row>
@@ -172,13 +178,11 @@ export default class SearchPage extends React.Component {
           <Panel header='Additional Options'>
             <FormGroup>
               <ControlLabel> Match To:</ControlLabel> {' '}
-              <select ref="status" >
-                <option value="name" >Product's name</option>
-                <option value="artist">Artist's name</option>
-                <option value="date">Date</option>
-              </select>
+              <Checkbox inline> Author </Checkbox> {' '}
+              <Checkbox inline> Description </Checkbox> {' '}
+              <Checkbox inline> Collaborators </Checkbox> {' '}
               <br />
-              <i>Note: Choose the query you want to search for. You can search for Product's name, Artist's name or the date when product is uploaded</i>
+              <i>note: this function is not implemented</i>
             </FormGroup>
           </Panel>
         </Row>
