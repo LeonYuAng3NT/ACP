@@ -110,7 +110,7 @@ export default class LoginPage extends React.Component {
                 <FormGroup>
                     <Col smOffset={2} sm={10}>
                         <FacebookLogin
-                            appId="1734208480228199"
+                            appId="412857565736679"
                             size="medium"
                             autoLoad={false}
                             fields="name,email,picture"
