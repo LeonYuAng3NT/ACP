@@ -96,8 +96,8 @@ export default class CreateComment extends React.Component {
                 <Col xsOffset={2} componentClass={ControlLabel} sm={6} >
                     <ControlLabel>Type of this comment</ControlLabel>
                         <FormControl componentClass="select" placeholder="Type of this comment" inputRef={(ref) => {this.select = ref}}>
-                        <option value="select">positive</option>
-                        <option value="other">negative</option>
+                        <option value="positive">positive</option>
+                        <option value="negative">negative</option>
                     </FormControl>
                 </Col>
             </FormGroup>
