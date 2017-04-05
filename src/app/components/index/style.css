@@ -11,9 +11,11 @@
 }
 
 #SlideShowImage {
-	padding: 0.15em;
-	margin-left: 45%;
-	max-height: 24em;
+	max-height:500px;
+	max-width:900px;
+	height:100%;
+	width:100%;
+	background-size:cover;
 }
 
 #SlideShowDescription {

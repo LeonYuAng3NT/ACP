@@ -22,7 +22,7 @@ function getProfile(req,res,next){
 	let username = req.query.username;
 	let status = req.query.status;
 	if(uid!=null) {
-		db.all("SELECT uID, username, password, status FROM User WHERE uID=?", [uid], function (err, rows) {
+		db.all("SELECT uID, name, password, status FROM User WHERE uID=?", [uid], function (err, rows) {
 			if(err){
 				console.log(err);
 				res.send(err);
@@ -33,7 +33,7 @@ function getProfile(req,res,next){
 			else{
 				var user = {
 					"id": rows[0].uID,
-					"username": rows[0].username,
+					"username": rows[0].name,
 					"password": rows[0].password,
 					"status": rows[0].status
 				};
@@ -41,7 +41,7 @@ function getProfile(req,res,next){
 			}
 		});
 	}else if(username!=null){
-			db.all("SELECT uID, username, password, status FROM User WHERE username=?",[username],function(err,rows) {
+			db.all("SELECT uID, name, password, status FROM User WHERE username=?",[username],function(err,rows) {
 				if(err){
 					console.log(err);
 					res.send(err);
@@ -55,7 +55,7 @@ function getProfile(req,res,next){
 
 			});
 	}else if (status!=null){
-		db.all("SELECT uID, username, password, status FROM User WHERE status=?", [status], function (err, rows) {
+		db.all("SELECT uID, name, password, status FROM User WHERE status=?", [status], function (err, rows) {
 			if(err){
 				console.log(err);
 				res.send(err);

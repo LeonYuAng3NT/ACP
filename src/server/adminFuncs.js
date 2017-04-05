@@ -63,7 +63,7 @@ function adminGetPullRequestFuncs (req,res,next) {
         });
         console.log(result);
         res.send(result);
-        return; 
+        return;
     });
 }
 
@@ -106,7 +106,7 @@ function adminGetRequestedProjectFuncs (req,res,next) {
         });
         console.log(result);
         res.send(result);
-        return; 
+        return;
     });
 }
 
@@ -195,7 +195,7 @@ function projectStarterGetProjects(req, res, next) {
         });
         console.log(result);
         res.send(result);
-        return; 
+        return;
     });
 }
 
@@ -216,7 +216,7 @@ function userGetContributedProducts(req, res, next) {
     // }
 
     // get all the projects that are assigned to this admin
-    db.all('SELECT distinct p1.pID, p1.name, p1.dateIssued, p1.artist, p1.description, p1.imageURL, p1.root FROM Product p1, Product p2 WHERE p1.artist=? AND p2.pID>p1.root AND p2.artist>p1.artist', [username], function (err, rows) {
+    db.all('SELECT distinct p1.pID, p1.name, p1.dateIssued, p1.artist, p1.description, p1.imageURL, p1.root FROM Product p1, Product p2 WHERE p1.artist=? AND p1.root=p2.pID AND p2.artist<>p1.artist', [username], function (err, rows) {
         var result = []
         if (err) {
             console.log(err);
@@ -240,14 +240,45 @@ function userGetContributedProducts(req, res, next) {
         });
         console.log(result);
         res.send(result);
-        return; 
+        return;
+    });
+}
+
+function getRecentProducts(req, res, next) {
+    db.all('SELECT pID, name, dateIssued, artist, description, imageURL FROM Product ORDER BY dateIssued DESC', function (err, rows) {
+        var result = []
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+        if (rows.length < 1) {
+            res.send(result);
+            return;
+        }
+        var i = 0;
+        while (i < 3 && i < rows.length) {
+            result.push({
+                pID: rows[i].pID,
+                name: rows[i].name,
+                dateIssued: rows[i].dateIssued,
+                imageURL: rows[i].imageURL,
+                artist: rows[i].artist,
+                // root: row.root,
+                description: rows[i].description
+            })
+            i = i + 1;
+        }
+        console.log(result);
+        res.send(result);
+        return;
     });
 }
 
 module.exports = {
 	adminGetPullRequestFuncs: adminGetPullRequestFuncs,
     adminValidateFuncs: adminValidateFuncs,
-    isAdminFuncs: isAdmin, 
+    isAdminFuncs: isAdmin,
     projectStarterGetProjects: projectStarterGetProjects,
-    userGetContributedProducts: userGetContributedProducts
+    userGetContributedProducts: userGetContributedProducts,
+    getRecentProducts: getRecentProducts
 };

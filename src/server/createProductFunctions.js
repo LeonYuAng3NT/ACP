@@ -20,7 +20,6 @@ function createProduct(req,res,next){
 
 	var name = req.body.name;
    var parent = req.body.parent; // need to add at create product page
-	var date = req.body.date;
 	var artist = req.body.artist;
 	var description  =  req.body.description;
 

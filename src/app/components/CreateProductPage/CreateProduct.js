@@ -100,10 +100,9 @@ export default class RegisterPage  extends React.Component {
         var fire = () => this._onFire({
             name: this.refs.name.value,
             parent:this.refs.parent.value,
-            date: this.refs.date.value,
             path: 'https://s3.amazonaws.com/ACPimages/'+ this.state.fileName,
             artist: window.sessionStorage.getItem('username'),
-            nickname: this.refs.artist.value,
+            // nickname: this.refs.artist.value,
             description: this.refs.description.value
 
         });
@@ -144,27 +143,11 @@ export default class RegisterPage  extends React.Component {
                 </FormGroup>
                 <FormGroup controlId="formHorizontalText">
                     <Col componentClass={ControlLabel} sm={2}>
-                        Date
-                    </Col>
-                    <Col sm={10}>
-                        <input ref="date" type="text" placeholder="You can type 'now'"/>
-                    </Col>
-                </FormGroup>
-                <FormGroup controlId="formHorizontalText">
-                    <Col componentClass={ControlLabel} sm={2}>
-                        Artist name
-                    </Col>
-                    <Col sm={10}>
-                        <input ref="artist" type="text" placeholder="Your Nickname"/>
-                    </Col>
-                </FormGroup>
-                <FormGroup controlId="formHorizontalText">
-                    <Col componentClass={ControlLabel} sm={2}>
                         Description
                     </Col>
                     <Col sm={10}>
 
-                        <FormControl ref="description" componentClass="textarea" placeholder="Description of your product" />
+                        <input ref="description"  placeholder="Description" />
 
                     </Col>
                 </FormGroup>

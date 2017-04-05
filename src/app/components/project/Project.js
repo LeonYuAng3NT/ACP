@@ -274,9 +274,6 @@ export default class Project extends React.Component {
                         </ButtonGroup>
                         <Panel>
                             {panel_view}
-                            <OverlayTrigger placement="top" overlay={tooltip}>
-                                <Button bsStyle="default">Check for details</Button>
-                            </OverlayTrigger>
                         </Panel>
                     </Col>
                 </Grid>
@@ -303,4 +300,3 @@ export default class Project extends React.Component {
         return view
     }
 }
-

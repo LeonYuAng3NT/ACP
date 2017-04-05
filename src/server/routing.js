@@ -384,7 +384,7 @@ function setup(app) {
 	app.get('/main', testFunc);
     // Supposed to sync with front-end, Will address this unsolved problem at next meeting
 
-
+    app.get('/getRecentProducts', adminFuncs.getRecentProducts);
 	app.all('*', pageNotFound);
 
 

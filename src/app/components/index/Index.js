@@ -10,6 +10,7 @@ import Carousel from 'react-bootstrap/lib/Carousel';
 import Image from 'react-bootstrap/lib/Image';
 import Thumbnail from 'react-bootstrap/lib/Thumbnail';
 import {browserHistory} from 'react-router'
+import utils from '../Utils'
 
 import megpoidgumi from '../megpoidgumi.png';
 import dummyb1p1 from '../dummyb1p1.jpeg';
@@ -24,6 +25,22 @@ export default class Index extends React.Component {
 
 	constructor(props) {
 		super(props)
+		this.state = {
+			p1name: '',
+			p2name: '',
+			p3name: '',
+			p1src: '',
+			p2src: '',
+			p3src: '',
+			p1desc: '',
+			p2desc: '',
+			p3desc: '',
+		};
+
+		console.log('loading products');
+
+		this._fetchRecentProducts = this._fetchRecentProducts.bind(this);
+		utils.fetchJSON('api/getRecentProducts', this._fetchRecentProducts)
 	}
 
 	componentDidMount() {
@@ -31,18 +48,40 @@ export default class Index extends React.Component {
 		window.scrollTo(0, 0)
 	}
 
+	_fetchRecentProducts(products) {
+		console.log(products);
+		if(products.err) {
+			this.setState({
+				err: true
+			})
+		}
+		else {
+			this.setState({
+				p1name: products[0].name,
+				p1src: products[0].imageURL,
+				p1desc: products[0].description,
+				p2name: products[1].name,
+				p2src: products[1].imageURL,
+				p2desc: products[1].description,
+				p3name: products[2].name,
+				p3src: products[2].imageURL,
+				p3desc: products[2].description
+			})
+		}
+	}
+
 	render() {
 
 		/**
 		 * NOTE: We must fix the image display inside Carousel, maybe
 		 * use ResponsiveEmbed.
-		 * 
+		 *
 		 * Or we constraint the image inside Carousel to be all 1336x768
-		 * and we don't need to handle this stuff... it is valid since 
+		 * and we don't need to handle this stuff... it is valid since
 		 * a slideshow should look nice.
 		 *
 		 * Upon automation, all imgsrc, number of slides (this can be generated)
-		 * using loop, featured stuff should be returned and fetched from the 
+		 * using loop, featured stuff should be returned and fetched from the
 		 * backend.
 		 */
 
@@ -65,24 +104,24 @@ export default class Index extends React.Component {
 							<Col md={8}>
 								<Carousel>
 									<Carousel.Item>
-										<Image id="SlideShowImage" alt="900x500" src={megpoidgumi}/>
+										<Image id={style.SlideShowImage} alt="900x500" src={this.state.p1src} responsive/>
 										<Carousel.Caption>
-											<h3>Most Viewed Piece</h3>
-											<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+											<h3>{this.state.p1name}</h3>
+											<p>{this.state.p1desc}</p>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item>
-										<Image id="SlideShowImage" alt="900x500" src={megpoidgumi}/>
+										<Image id={style.SlideShowImage} alt="900x500" src={this.state.p2src} responsive/>
 										<Carousel.Caption>
-											<h3>Second slide label</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+											<h3>{this.state.p2name}</h3>
+											<p>{this.state.p2desc}</p>
 										</Carousel.Caption>
 									</Carousel.Item>
 									<Carousel.Item>
-										<Image id="SlideShowImage" alt="900x500" src={megpoidgumi}/>
+										<Image id={style.SlideShowImage} alt="900x500" src={this.state.p3src} responsive/>
 										<Carousel.Caption>
-											<h3>Third slide label</h3>
-											<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+											<h3>{this.state.p3name}</h3>
+											<p>{this.state.p3desc}</p>
 										</Carousel.Caption>
 									</Carousel.Item>
 								</Carousel>

@@ -56,7 +56,7 @@ export default class Profile extends React.Component {
     } else {
       this.setState({
         uID:user[0].id,
-        username:user[0].username,
+        username:user[0].name,
         status: user[0].status,
         project_list:[],
         contribution_list:[],

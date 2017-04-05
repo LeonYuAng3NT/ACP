@@ -78,10 +78,10 @@ export default class LoginPage extends React.Component {
                 <FormGroup>
                     <Row>
                         <Col componentClass={ControlLabel} sm={2}>
-                        Username
+                        Email
                         </Col>
                         <Col sm={10}>
-                            <input ref="username" type="email" placeholder="Username" />
+                            <input ref="username" type="email" placeholder="Email" />
                         </Col>
                     </Row>
                     <Row>

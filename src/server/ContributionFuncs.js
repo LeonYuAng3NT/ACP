@@ -27,12 +27,13 @@ function contribution_check(req,res,next){
     nodes: null
   }
   if(uid != null){
-    db.all("SELECT p2.pID, p2.name,p2.artist FROM Product p, Contribution c, Product p2 WHERE c.uID = ? AND c.pID=p.pID AND p.imageURL is NULL AND p2.pID=p.parent",[uid],function(err,rows){
+    db.all("SELECT p2.pID, p2.name,u.name as artist FROM Product p, Contribution c, Product p2, User u WHERE c.uID = ? AND c.pID=p.pID AND p.imageURL is NULL AND p2.pID=p.parent AND u.username=p2.artist",[uid],function(err,rows){
       if(err){
         console.log(err);
         note.massage = "Unexpected";
         res.send(note);
       }else{
+        console.log(rows)
         note.error = false;
         note.nodes = rows;
         res.send(note);

@@ -111,10 +111,10 @@ export default class RegisterPage  extends React.Component {
                 </FormGroup>
                 <FormGroup controlId="formHorizontalEmail">
                     <Col xsOffset={2} componentClass={ControlLabel} sm={2}>
-                        Username
+                        Email
                     </Col>
                     <Col sm={1}>
-                        <input  ref="username" type="email" placeholder="Username" />
+                        <input  ref="username" type="email" placeholder="Email" />
                     </Col>
                     <Col sm={4}>
                         <FormGroup>
@@ -144,7 +144,7 @@ export default class RegisterPage  extends React.Component {
 
                 <FormGroup controlId="formHorizontalPassword">
                     <Col xsOffset={2} componentClass={ControlLabel} sm={2}>
-                        NickName
+                        Nickname
                     </Col>
                     <Col sm={8}>
                         <input  ref="name" type="text" placeholder="Your Nickname" />
@@ -173,7 +173,7 @@ export default class RegisterPage  extends React.Component {
                     </Col>
                     <Col sm={1}>
                         <select ref="question" >
-                            <option value="What is your first pet's name">What is your first pet's name</option>
+                            <option value="What is your first pet's name">What is your first pets name</option>
                             <option value="When did you graduate from high school">When did you graduate from high school</option>
                         </select>
                     </Col>

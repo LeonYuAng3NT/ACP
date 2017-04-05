@@ -13,7 +13,7 @@ function getProductFunc(req,res,next){
 	console.log(name);
 	if(id!=null) {
 
-		db.all("SELECT pID, name, root, parent, dateIssued, imageURL,admin,artist,description FROM Product WHERE pID=?", [id], function (err, rows) {
+		db.all("SELECT pID, Product.name, root, parent, dateIssued, imageURL,admin, User.name AS artist,description FROM Product, User WHERE pID=? AND Product.artist = User.username", [id], function (err, rows) {
 			if(err){
 				console.log(err);
 				res.send(err);
